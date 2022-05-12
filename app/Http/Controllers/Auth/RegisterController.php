@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\WelcomeMessage;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -10,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -30,6 +32,8 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    private ?string $password;
+
     /**
      * Handle a registration request for the application.
      *
@@ -48,6 +52,8 @@ class RegisterController extends Controller
         if ($response = $this->registered($request, $user)) {
             return $response;
         }
+
+        $user->notify(new WelcomeMessage($user->name,$this->password));
 
         return $request->wantsJson()
             ? new JsonResponse(['redirect' => $this->redirectPath()], 201)
@@ -101,6 +107,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
+        $this->password = Str::random();
+
         return User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
@@ -113,7 +121,7 @@ class RegisterController extends Controller
             'issued_by' =>  $data['issued_by'],
             'propiska' =>  $data['propiska'],
             'email' => $data['email'],
-            'password' => Hash::make(Str::random()),
+            'password' => Hash::make($this->password),
         ]);
     }
 }

@@ -1,4 +1,4 @@
-require('./bootstrap');
+require('./bootstrap')
 
 //Настройка валидации плагина
 $.validator.addMethod('series', function (value) {
@@ -34,8 +34,9 @@ jQuery.validator.setDefaults({
                 $(form).find('button[type="submit"]').removeClass('disabled').attr({'disabled': false})
             },
             success: function (response){
-                if(response.redirect !== undefined){
-                    window.location = response.redirect
+                console.log(response)
+                if(response !== undefined && response.redirect !== undefined){
+                    window.location.href = response.redirect
                 }
                 $(form).find('button[type="submit"]').removeClass('disabled').attr({'disabled': false})
             }

@@ -95,6 +95,7 @@
                     </form>
                 </div>
                 <div class="card-footer">
+                    <p class="mb-0">Пароль генерируется автоматически и высылается на указанный email адрес.</p>
                     <p class="mb-0"><span class="text-danger">*</span> - обязательные поля</p>
                 </div>
             </div>
