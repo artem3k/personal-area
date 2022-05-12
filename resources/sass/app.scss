@@ -10,7 +10,7 @@
 //Button
 .btn-primary{
     color: #fff;
-    &:hover, &:focus, &:active{
+    &:hover, &:focus, &:active, .disabled{
      color: #fff;
     }
 }

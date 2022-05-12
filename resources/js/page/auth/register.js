@@ -1,6 +1,17 @@
 $(function (){
     let registerForm = $('#register-form')
-    let btn = registerForm.find('button')
-
-    let formValidator = registerForm.validate()
+    registerForm.validate({
+        rules:{
+            'series': {
+                series: true
+            },
+            'number':{
+                minlength: 6
+            }
+        }
+    })
+    new Cleave('#seriesInput', {
+        delimiter: ' ',
+        blocks: [2,2],
+    });
 })

@@ -2,6 +2,7 @@ window._ = require('lodash');
 window.$ = window.jQuery = require( "jquery" );
 require('jquery-validation')
 require('jquery-validation/dist/localization/messages_ru')
+require('cleave.js')
 
 try {
     require('bootstrap');

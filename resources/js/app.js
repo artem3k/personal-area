@@ -1,6 +1,9 @@
 require('./bootstrap');
 
 //Настройка валидации плагина
+$.validator.addMethod('series', function (value) {
+    return /^[0-9][0-9] [0-9][0-9]$/.test(value);
+}, 'Не верный формат серии паспорта');
 jQuery.validator.setDefaults({
     errorElement: 'div',
     errorPlacement: function (error, element){
@@ -14,6 +17,7 @@ jQuery.validator.setDefaults({
         $(element).removeClass('is-invalid')
     },
     submitHandler: function (form){
+        $(form).find('button[type="submit"]').addClass('disabled').attr({'disabled': true})
         $.ajax({
             url: form.action,
             type: form.method,
@@ -27,7 +31,12 @@ jQuery.validator.setDefaults({
                 }
                 let validator = $.data( form, "validator")
                 validator.showErrors(errorsFormat)
-        }
+                $(form).find('button[type="submit"]').removeClass('disabled').attr({'disabled': false})
+            },
+            success: function (){
+                $(form).find('button[type="submit"]').removeClass('disabled').attr({'disabled': false})
+            }
         })
     }
 })
+
