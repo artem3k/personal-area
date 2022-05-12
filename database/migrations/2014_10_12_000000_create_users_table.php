@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('patronymic')->nullable()->comment('Отчество');
             $table->string('email')->unique()->comment('Почта');
             $table->date('birthday')->comment('День рождение');
+            $table->date('date_of_issue')->comment('Паспорт дата выдачи');
             $table->text('birthday_place')->comment('Паспорт место рождения');
             $table->unsignedInteger('series')->comment('Паспорт серия');
             $table->unsignedInteger('number')->comment('Паспорт номер');
