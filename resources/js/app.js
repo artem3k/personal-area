@@ -33,7 +33,10 @@ jQuery.validator.setDefaults({
                 validator.showErrors(errorsFormat)
                 $(form).find('button[type="submit"]').removeClass('disabled').attr({'disabled': false})
             },
-            success: function (){
+            success: function (response){
+                if(response.redirect !== undefined){
+                    window.location = response.redirect
+                }
                 $(form).find('button[type="submit"]').removeClass('disabled').attr({'disabled': false})
             }
         })

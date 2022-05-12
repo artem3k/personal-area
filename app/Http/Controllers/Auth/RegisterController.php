@@ -5,10 +5,15 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
@@ -24,6 +29,30 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param Request $request
+     * @return RedirectResponse|JsonResponse
+     * @throws ValidationException
+     */
+    public function register(Request $request): JsonResponse|RedirectResponse
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse(['redirect' => $this->redirectPath()], 201)
+            : redirect($this->redirectPath());
+    }
 
     /**
      * Where to redirect users after registration.
@@ -68,9 +97,9 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\User
+     * @return User
      */
-    protected function create(array $data)
+    protected function create(array $data): User
     {
         return User::create([
             'name' => $data['name'],
@@ -78,7 +107,8 @@ class RegisterController extends Controller
             'patronymic' => $data['patronymic'],
             'birthday' =>  $data['birthday'],
             'birthday_place' =>  $data['birthday_place'],
-            'series' =>  $data['series'],
+            'date_of_issue' => $data['date_of_issue'],
+            'series' =>  str_replace(' ','',$data['series']),
             'number' =>  $data['number'],
             'issued_by' =>  $data['issued_by'],
             'propiska' =>  $data['propiska'],

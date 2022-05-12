@@ -13,4 +13,7 @@
     &:hover, &:focus, &:active, .disabled{
      color: #fff;
     }
+    &.disabled{
+        color: lightgray;
+    }
 }
