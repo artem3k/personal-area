@@ -33,14 +33,14 @@
                         <div class="row mb-3">
                             <label for="birthdayInput" class="col-md-4 col-form-label text-md-end">Дата рождения <span class="text-danger">*</span></label>
                             <div class="col-md-6">
-                                <input type="date" class="form-control" id="birthdayInput" name="birthday">
+                                <input type="date" class="form-control" id="birthdayInput" name="birthday" required>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <label for="birthdayPlaceInput" class="col-md-4 col-form-label text-md-end">Место рождения<span class="text-danger">*</span></label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="birthdayPlaceInput" name="birthday_place">
+                                <input type="text" class="form-control" id="birthdayPlaceInput" name="birthday_place" required>
                             </div>
                         </div>
 
@@ -50,19 +50,19 @@
                                 <div class="row">
                                     <div class="col-5">
                                         <label for="dateOfIssueInput" class="form-label d-none">Дата выдачи</label>
-                                        <input type="date" class="form-control" id="dateOfIssueInput" name="date_of_issue">
+                                        <input type="date" class="form-control" id="dateOfIssueInput" name="date_of_issue" required>
                                     </div>
                                     <div class="col-3">
                                         <label for="seriesInput" class="form-label d-none">Серия</label>
-                                        <input type="text" class="form-control" id="seriesInput" placeholder="Серия" name="series">
+                                        <input type="text" class="form-control" id="seriesInput" placeholder="Серия" name="series" required>
                                     </div>
                                     <div class="col-4">
                                         <label for="numberInput" class="form-label d-none">Номер</label>
-                                        <input type="text" class="form-control" id="numberInput" placeholder="Номер" name="number">
+                                        <input type="text" class="form-control" id="numberInput" placeholder="Номер" name="number" required>
                                     </div>
                                     <div class="mt-3">
                                         <label for="IssuedByInput" class="form-label d-none">Кем выдан</label>
-                                        <textarea class="form-control" id="IssuedByInput" rows="3" name="issued_by" placeholder="Кем выдан"></textarea>
+                                        <textarea class="form-control" id="IssuedByInput" rows="3" name="issued_by" placeholder="Кем выдан" required></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -71,14 +71,14 @@
                         <div class="row mb-3">
                             <label for="propiskaInput" class="col-md-4 col-form-label text-md-end">Адрес регистрации<span class="text-danger">*</span></label>
                             <div class="col-md-6">
-                                <textarea class="form-control" id="propiskaInput" rows="3" name="propiska"></textarea>
+                                <textarea class="form-control" id="propiskaInput" rows="3" name="propiska" required></textarea>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <label for="emailInput" class="col-md-4 col-form-label text-md-end">Email <span class="text-danger">*</span></label>
                             <div class="col-md-6">
-                                <input type="email" class="form-control" id="emailInput" name="email" placeholder="mail@exaple.com">
+                                <input type="email" class="form-control" id="emailInput" name="email" placeholder="mail@exaple.com" required>
                             </div>
                         </div>
 
@@ -101,4 +101,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset(mix('js/page/auth/register.js')) }}"></script>
 @endsection

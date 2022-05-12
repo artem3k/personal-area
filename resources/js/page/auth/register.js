@@ -1,6 +1,6 @@
 $(function (){
-    let form = $('#register-form')
-    form.submit(function (){
-        axios
-    })
+    let registerForm = $('#register-form')
+    let btn = registerForm.find('button')
+
+    let formValidator = registerForm.validate()
 })

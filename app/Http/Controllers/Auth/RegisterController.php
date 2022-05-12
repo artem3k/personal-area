@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -59,8 +60,7 @@ class RegisterController extends Controller
             'number' => ['required','string', 'max:6','min:6','regex:/^[0-9][0-9][0-9][0-9][0-9][0-9]$/'],
             'issued_by' => ['required','string', 'max:3000'],
             'propiska' => ['required','string', 'max:3000'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
         ]);
     }
 
@@ -74,8 +74,16 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'surname' => $data['surname'],
+            'patronymic' => $data['patronymic'],
+            'birthday' =>  $data['birthday'],
+            'birthday_place' =>  $data['birthday_place'],
+            'series' =>  $data['series'],
+            'number' =>  $data['number'],
+            'issued_by' =>  $data['issued_by'],
+            'propiska' =>  $data['propiska'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make(Str::random()),
         ]);
     }
 }

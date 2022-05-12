@@ -10,7 +10,7 @@
 //Button
 .btn-primary{
     color: #fff;
-    &:hover{
+    &:hover, &:focus, &:active{
      color: #fff;
     }
 }

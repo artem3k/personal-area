@@ -11273,6 +11273,6 @@ textarea.form-control-lg {
 .btn-primary {
   color: #fff;
 }
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   color: #fff;
 }
