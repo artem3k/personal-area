@@ -16,6 +16,8 @@ jQuery.validator.setDefaults({
     unhighlight: function (element, errorClass, validClass){
         $(element).removeClass('is-invalid')
     },
+    after: function (){
+    },
     submitHandler: function (form){
         $(form).find('button[type="submit"]').addClass('disabled').attr({'disabled': true})
         $.ajax({
@@ -38,6 +40,8 @@ jQuery.validator.setDefaults({
                 if(response !== undefined && response.redirect !== undefined){
                     window.location.href = response.redirect
                 }
+                let validator = $.data( form, "validator")
+                validator.settings.after()
                 $(form).find('button[type="submit"]').removeClass('disabled').attr({'disabled': false})
             }
         })

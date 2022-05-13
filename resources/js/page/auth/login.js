@@ -1,4 +1,8 @@
 $(function (){
     let loginForm = $('#login-form')
-    loginForm.validate()
+    loginForm.validate({
+        after: function (){
+            window.location.href = '/home'
+        }
+    })
 })
