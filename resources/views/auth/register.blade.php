@@ -19,7 +19,7 @@
                         <div class="row mb-3">
                             <label for="nameInput" class="form-label col-form-label text-md-end col-md-4">Имя <span class="text-danger">*</span></label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="nameInput" name="name" placeholder="Петров" required maxlength="255">
+                                <input type="text" class="form-control" id="nameInput" name="name" placeholder="Александар" required maxlength="255">
                             </div>
                         </div>
 

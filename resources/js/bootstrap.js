@@ -4,6 +4,7 @@ require('jquery-validation')
 require('jquery-validation/dist/localization/messages_ru')
 require('cleave.js')
 require('@popperjs/core')
+window.Swal = require('sweetalert2')
 window.bootstrap = require('bootstrap')
 
 $.ajaxSetup({
