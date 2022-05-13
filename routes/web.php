@@ -17,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['middleware' => 'auth'],function (){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/change-password', [App\Http\Controllers\PasswordChangeController::class, 'change'])->name('change-password');
+    Route::post('/change-data-user', [App\Http\Controllers\ChangeUserData::class, 'change'])->name('change-data-user');
+    Route::post('/questionnaire', [App\Http\Controllers\QuestionnaireController::class, 'pass'])->name('questionnaire');
+});

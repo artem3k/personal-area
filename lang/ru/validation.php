@@ -137,5 +137,7 @@ return [
     'attributes' => [
         'series' => 'серия',
         'number' => 'номер',
+        'new-password' => 'новый пароль',
+        'old-password' => 'текущий пароль'
     ],
 ];

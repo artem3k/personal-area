@@ -17,6 +17,8 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/page/auth/password/email.js','public/js/page/password/email.js')
     .js('resources/js/page/auth/register.js','public/js/page/auth/register.js')
     .js('resources/js/page/auth/login.js','public/js/page/auth/login.js')
+    //Home
+    .js('resources/js/page/home.js','public/js/page/home.js')
     //CSS
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps()
